@@ -5,21 +5,20 @@
      *   gcc -o tut tut.c $(pkg-config --cflags --libs gtk+-2.0 gmodule-2.0)
      */
     
-    #include <stdio.h>	 
     #include <gtk/gtk.h>
 
-int clicker (GtkWidget *widget,
-             gpointer   data)
-{
-  g_print ("Hello World\n");
-}
+    GtkBuilder *builder;
 
-     
-    int
-    main( int    argc,
-          char **argv )
+    int clicker (GtkWidget *widget, gpointer   data)
+    { 
+  	gchar *entry_value;
+
+	entry_value = gtk_entry_get_text(GTK_ENTRY((GtkWidget *) data));
+	g_print("%s\n", entry_value);
+    }
+ 
+    int main(int argc, char **argv )
     {
-        GtkBuilder *builder;
         GtkWidget  *window;
         GError     *error = NULL;
      
